@@ -2,39 +2,36 @@
 
 import {TableModel} from '../models/TableModel';
 
-export class TableEditor {
-  constructor(
-      private readonly container: HTMLElement,
-      private readonly model: TableModel) {
-    this.container = container;
-    this.model = model;
+import {Grid} from './Grid';
+import {SelectionManager} from './SelectionManager';
 
+export class TableEditor {
+  private grid!: Grid;
+  private selection: SelectionManager;
+
+  constructor(
+      private container: HTMLElement,
+      private model: TableModel,
+  ) {
+    this.selection = new SelectionManager();
     this.render();
+  }
+
+  private render(): void {
+    this.container.empty();
+
+    this.grid = new Grid(
+        this.container,
+        this.model,
+        this.selection,
+    );
   }
 
   public getModel(): TableModel {
     return this.model;
   }
 
-  private render(): void {
-    this.container.empty();
-
-    const table = this.container.createEl('table');
-
-    for (const row of this.model.rows) {
-      const tr = table.createEl('tr');
-
-      for (const cell of row.cells) {
-        const td = tr.createEl('td');
-
-        const input = td.createEl('textarea');
-
-        input.value = cell.text;
-
-        input.oninput = () => {
-          cell.text = input.value;
-        };
-      }
-    }
+  public getSelection(): SelectionManager {
+    return this.selection;
   }
 }

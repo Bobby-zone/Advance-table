@@ -6,3 +6,48 @@ available in the app when your plugin is enabled.
 If your plugin does not need CSS, delete this file.
 
 */
+.table-grid {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.table-grid td {
+    border: 1px solid var(--background-modifier-border);
+    vertical-align: top;
+    padding: 0;
+}
+
+.table-cell {
+    width: 100%;
+    height: 100%;
+}
+
+.table-cell-input {
+    width: 100%;
+    min-height: 80px;
+    border: none;
+    resize: none;
+    padding: 8px;
+    font: inherit;
+    background: transparent;
+    box-sizing: border-box;
+}
+
+.table-cell-input:focus {
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+}
+
+.table-toolbar {
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.table-cell.is-selected {
+    outline: 2px solid var(--interactive-accent);
+    background: var(--background-modifier-hover);
+}

@@ -1,7 +1,6 @@
 import {ItemView, WorkspaceLeaf} from 'obsidian';
 
 import {TableDocument} from '../models/TableDocument';
-import {TableModel} from '../models/TableModel';
 import {TableSerializer} from '../parser/TableSerializer';
 
 import {TableEditor} from './TableEditor';
@@ -12,10 +11,6 @@ export const TABLE_EDITOR_VIEW = 'advanced-table-editor';
 export class TableEditorView extends ItemView {
   private document!: TableDocument;
   private editor!: TableEditor;
-
-  constructor(leaf: WorkspaceLeaf) {
-    super(leaf);
-  }
 
   getViewType() {
     return TABLE_EDITOR_VIEW;
@@ -34,13 +29,12 @@ export class TableEditorView extends ItemView {
   private render() {
     this.contentEl.empty();
 
-    const toolbarContainer = this.contentEl.createDiv({cls: 'table-toolbar'});
+    const toolbarEl = this.contentEl.createDiv();
+    const gridEl = this.containerEl.createDiv();
 
-    const editorContainer = this.containerEl.createDiv({cls: 'table-editor'});
+    new Toolbar(toolbarEl, () => this.save());
 
-    new Toolbar(toolbarContainer, () => this.save());
-
-    this.editor = new TableEditor(editorContainer, this.document.model);
+    this.editor = new TableEditor(gridEl, this.document.model);
   }
 
   private async save() {
