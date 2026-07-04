@@ -1,11 +1,77 @@
-/*
+:root {
+    --header-top: #264653;
+    --header-side: #264653;
+    --header-corner: #3d405b;
+    --text: #3d405b;
+    --counter-text: white;
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+/* =================== global style =================== */
+td,
+th {
+    padding: 1em;
+}
 
-If your plugin does not need CSS, delete this file.
+td {
+    display: table-cell;
+}
 
-*/
+th[scope="col"] {
+    background-color: var(--header-top);
+    color: var(--counter-text);
+    caret-color: var(--counter-text);
+    border: 1px solid white;
+    font-weight: bold;
+}
+
+th[scope="row"] {
+    background-color: var(--header-side);
+    color: var(--counter-text);
+    caret-color: var(--counter-text);
+    border: 1px solid white;
+    font-weight: bold;
+    text-align: left;
+}
+
+th[scope="corner"] {
+    background-color: var(--header-corner);
+    color: var(--counter-text);
+    caret-color: var(--counter-text);
+    border: 1px solid white;
+    font-weight: bold;
+    text-align: left;
+}
+
+.spread {
+    width: 99%;
+    min-width: max-content;
+    border-collapse: collapse;
+}
+
+.spread td,
+.spread th {
+    white-space: nowrap;
+}
+
+
+.center td:not(:has(ul)),
+.center th:not(:has(ul)) {
+    text-align: center;
+}
+
+.middle td:not(:has(ul)),
+.middle th:not(:has(ul)) {
+    vertical-align: middle;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    max-width: 100%
+}
+
+
+
+
 .table-grid {
     width: 100%;
     border-collapse: collapse;
@@ -51,3 +117,5 @@ If your plugin does not need CSS, delete this file.
     outline: 2px solid var(--interactive-accent);
     background: var(--background-modifier-hover);
 }
+
+

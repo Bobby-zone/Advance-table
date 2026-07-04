@@ -23,5 +23,7 @@ export class TableRenderer {
                   await CellRenderer.render(app, td, cell, ctx);
       }
     }
+
+    table.classList.add(...(model.style ?? []));
   }
 }
