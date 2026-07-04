@@ -1,4 +1,3 @@
-import type {App} from 'obsidian';
 import {Plugin} from 'obsidian';
 
 import {TableBlockParser} from './parser/TableBlockParser';
@@ -15,7 +14,7 @@ export default class TablePlugin extends Plugin {
             const model = TableBlockParser.parse(source);
 
             const renderer = new TableRenderer();
-            renderer.render(this.app, el, model, this);
+            await renderer.render(this.app, el, model, this);
           } catch (err) {
             console.error(err);
 

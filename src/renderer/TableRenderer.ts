@@ -5,7 +5,8 @@ import {TableModel} from '../models/TableModel';
 import {CellRenderer} from './CellRenderer';
 
 export class TableRenderer {
-  render(app: App, container: HTMLElement, model: TableModel, ctx: Component) {
+  async render(
+      app: App, container: HTMLElement, model: TableModel, ctx: Component) {
     const table = container.createEl('table');
     table.addClass('html-table');
 
@@ -16,9 +17,10 @@ export class TableRenderer {
         const td = tr.createEl('td');
 
         if (cell.rowspan) td.rowSpan = cell.rowspan
-          if (cell.colspan) td.rowSpan = cell.colspan
+          if (cell.colspan) td.rowSpan =
+              cell.colspan
 
-          CellRenderer.render(app, td, cell, ctx);
+                  await CellRenderer.render(app, td, cell, ctx);
       }
     }
   }
