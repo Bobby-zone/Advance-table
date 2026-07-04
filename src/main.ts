@@ -1,6 +1,5 @@
-import {App, Editor, MarkdownFileInfo, MarkdownView, Notice, Plugin, WorkspaceLeaf} from 'obsidian';
+import {App, Plugin} from 'obsidian';
 
-import {TableDocument} from './models/TableDocument';
 import {TableBlockParser} from './parser/TableBlockParser';
 import {TableRenderer} from './renderer/TableRenderer';
 
@@ -15,7 +14,7 @@ export default class TablePlugin extends Plugin {
             const model = TableBlockParser.parse(source);
 
             const renderer = new TableRenderer();
-            await renderer.render(el, model, ctx);
+            await renderer.render(this.app, el, model, ctx);
           } catch (err) {
             console.error(err);
 

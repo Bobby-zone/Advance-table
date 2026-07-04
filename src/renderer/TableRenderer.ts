@@ -1,9 +1,11 @@
+import {App} from 'obsidian';
+
 import {TableModel} from '../models/TableModel';
 
 import {CellRenderer} from './CellRenderer';
 
 export class TableRenderer {
-  render(container: HTMLElement, model: TableModel, ctx?: any) {
+  render(app: App, container: HTMLElement, model: TableModel, ctx?: any) {
     const table = container.createEl('table');
     table.addClass('html-table');
 
@@ -16,7 +18,7 @@ export class TableRenderer {
         if (cell.rowspan) td.rowSpan = cell.rowspan
           if (cell.colspan) td.rowSpan = cell.colspan
 
-          CellRenderer.render(td, cell, ctx);
+          CellRenderer.render(app, td, cell, ctx);
       }
     }
   }

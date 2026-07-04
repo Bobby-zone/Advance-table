@@ -1,7 +1,7 @@
-import {MarkdownRenderer} from 'obsidian';
+import {App, MarkdownRenderer} from 'obsidian';
 
 export class MarkdownRendererWrapper {
-  static render(el: HTMLElement, text: string, ctx?: any) {
-    MarkdownRenderer.renderMarkdown(text, el, '', ctx);
+  static render(app: App, el: HTMLElement, text: string, ctx?: any) {
+    MarkdownRenderer.render(app, text, el, '', ctx);
   }
 }
