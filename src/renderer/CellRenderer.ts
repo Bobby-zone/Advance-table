@@ -1,11 +1,11 @@
-import {App} from 'obsidian';
+import {App, Component} from 'obsidian';
 
 import {TableCell} from '../models/TableCell';
 
 import {MarkdownRendererWrapper} from './MarkdownRenderer';
 
 export class CellRenderer {
-  static render(app: App, el: HTMLElement, cell: TableCell, ctx?: any) {
+  static render(app: App, el: HTMLElement, cell: TableCell, ctx: Component) {
     MarkdownRendererWrapper.render(app, el, cell.text, ctx);
   }
 }

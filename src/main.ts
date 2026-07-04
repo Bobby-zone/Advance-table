@@ -14,7 +14,7 @@ export default class TablePlugin extends Plugin {
             const model = TableBlockParser.parse(source);
 
             const renderer = new TableRenderer();
-            await renderer.render(this.app, el, model, ctx);
+            renderer.render(this.app, el, model, this);
           } catch (err) {
             console.error(err);
 
@@ -22,6 +22,4 @@ export default class TablePlugin extends Plugin {
           }
         });
   }
-
-  onunload() {}
 }
