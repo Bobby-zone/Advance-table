@@ -1,4 +1,5 @@
-import {App, Plugin} from 'obsidian';
+import type {App} from 'obsidian';
+import {Plugin} from 'obsidian';
 
 import {TableBlockParser} from './parser/TableBlockParser';
 import {TableRenderer} from './renderer/TableRenderer';
