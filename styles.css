@@ -16,16 +16,20 @@ td {
     display: table-cell;
 }
 
-.header-top {
-    background-color: var(--header-top);
+td:hover {
+    background-color: yellow !important;
+}
+
+.header-top{
+    background-color: var(--header-top) !important;
     color: var(--counter-text) !important;
     caret-color: var(--counter-text);
     border: 1px solid white;
     font-weight: bold;
 }
 
-.heaader-side {
-    background-color: var(--header-side);
+.header-side {
+    background-color: var(--header-side) !important;
     color: var(--counter-text) !important;
     caret-color: var(--counter-text);
     border: 1px solid white;
@@ -34,7 +38,7 @@ td {
 }
 
 .header-corner {
-    background-color: var(--header-corner);
+    background-color: var(--header-corner) !important;
     color: var(--counter-text) !important;
     caret-color: var(--counter-text);
     border: 1px solid white;
