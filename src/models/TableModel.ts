@@ -6,7 +6,7 @@ export interface TableColumn {
 
 export interface TableModel {
   version: number;
-  style: [];
+  style: string[];
   columns: TableColumn[];
 
   rows: TableRow[];

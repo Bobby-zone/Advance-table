@@ -16,7 +16,7 @@ td {
     display: table-cell;
 }
 
-th[scope="col"] {
+.header-top {
     background-color: var(--header-top);
     color: var(--counter-text);
     caret-color: var(--counter-text);
@@ -24,7 +24,7 @@ th[scope="col"] {
     font-weight: bold;
 }
 
-th[scope="row"] {
+.heaader-side {
     background-color: var(--header-side);
     color: var(--counter-text);
     caret-color: var(--counter-text);
@@ -33,7 +33,7 @@ th[scope="row"] {
     text-align: left;
 }
 
-th[scope="corner"] {
+.header-corner {
     background-color: var(--header-corner);
     color: var(--counter-text);
     caret-color: var(--counter-text);
