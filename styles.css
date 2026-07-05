@@ -18,7 +18,7 @@ td {
 
 .header-top {
     background-color: var(--header-top);
-    color: var(--counter-text);
+    color: var(--counter-text) !important;
     caret-color: var(--counter-text);
     border: 1px solid white;
     font-weight: bold;
@@ -26,7 +26,7 @@ td {
 
 .heaader-side {
     background-color: var(--header-side);
-    color: var(--counter-text);
+    color: var(--counter-text) !important;
     caret-color: var(--counter-text);
     border: 1px solid white;
     font-weight: bold;
@@ -35,7 +35,7 @@ td {
 
 .header-corner {
     background-color: var(--header-corner);
-    color: var(--counter-text);
+    color: var(--counter-text) !important;
     caret-color: var(--counter-text);
     border: 1px solid white;
     font-weight: bold;
