@@ -7,15 +7,22 @@
 }
 
 /* =================== global style =================== */
-td,
-th {
-    padding: 1em;
+td p {
+    margin: 0.4em 0.8em !important;   /* top/bottom left/right */
 }
 
-td {
-    display: table-cell;
+td li {
+    line-height: 1.5 !important;
+    margin-bottom: 0.7em !important;
 }
 
+.block-language-table {
+    display: block;
+    overflow-x: auto;
+}
+/*  */
+
+/*  */
 .header-top{
     background-color: var(--header-top) !important;
     color: var(--counter-text) !important;
@@ -41,41 +48,32 @@ td {
     font-weight: bold;
     text-align: left;
 }
+/*  */
 
+/*  */
 .spread {
     width: 99%;
     min-width: max-content;
     border-collapse: collapse;
 }
 
-.spread td,
-.spread th {
+.spread td {
     white-space: nowrap;
 }
+/*  */
 
-.block-language-table {
-    display: block;
-    overflow-x: auto;
-}
-
-.center td:not(:has(ul)),
-.center th:not(:has(ul)) {
+/* alignment */
+.center td:not(:has(ul)) {
     text-align: center;
 }
 
-.middle td:not(:has(ul)),
-.middle th:not(:has(ul)) {
+.middle td:not(:has(ul)) {
     vertical-align: middle;
 }
-
-.table-wrapper {
-    overflow-x: auto;
-    max-width: 100%
-}
+/*  */
 
 
-
-
+/* =================== custom tab style =================== */
 .table-grid {
     width: 100%;
     border-collapse: collapse;
