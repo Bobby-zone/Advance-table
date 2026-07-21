@@ -28,7 +28,7 @@ export class TableView {
     await this.tableRenderer.render(container, this.model, this.isEditable());
   }
 
-  private async save() {
+  private async save(): Promise<void> {
     const source = TableBlockSerializer.serialize(this.model);
     await this.onUpdate(source);
   }

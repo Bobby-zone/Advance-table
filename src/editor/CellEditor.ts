@@ -9,7 +9,7 @@ export class CellEditor {
 
   constructor(
       private renderer: CellRenderer,
-      private onChange: () => void,
+      private onChange: () => Promise<void>,
   ) {}
 
   async beginEdit(cell: TableCell, el: HTMLTableCellElement) {
@@ -22,7 +22,7 @@ export class CellEditor {
 
     // fixed td width
     const wt = el.getBoundingClientRect().width;
-    el.style.width = `${wt}px`;
+    el.setCssProps({'--table-cell-width': `${wt}px`})
 
     const textarea = el.createEl('textarea', {cls: 'table-cell-editor'});
     textarea.value = cell.text;
@@ -32,8 +32,9 @@ export class CellEditor {
 
     // resize textarea according to content
     const resize = () => {
-      textarea.style.height = `0px`;
-      textarea.style.height = `${textarea.scrollHeight}px`;
+      textarea.setCssProps({'--table-cell-height': `0px`});
+      textarea.setCssProps(
+          {'--table-cell-height': `${textarea.scrollHeight}px`});
     };
 
 
@@ -41,7 +42,7 @@ export class CellEditor {
     resize();
 
     // if click outside table finishEdit
-    document.addEventListener('pointerdown', this.handleOutsideClick);
+    activeDocument.addEventListener('pointerdown', this.handleOutsideClick);
   };
 
   async finishEdit() {
@@ -55,23 +56,23 @@ export class CellEditor {
     // remove the textarea
     el.empty();
     el.removeClass('editing');
-    el.style.width = '';
+    el.setCssProps({'--table-cell-width': ''});
 
     // re-render cell
     await this.renderer.render(el, cell);
 
     // tell outside that model changed
-    this.onChange();
+    await this.onChange();
 
 
     // no cell is being edited
     this.editing = undefined;
 
     // remove eventListener
-    document.removeEventListener('pointerdown', this.handleOutsideClick);
+    activeDocument.removeEventListener('pointerdown', this.handleOutsideClick);
   }
 
-  private handleOutsideClick = async (event: MouseEvent) => {
+  private handleOutsideClick = (event: MouseEvent): void => {
     if (!this.editing) return;
 
     const target = event?.target as HTMLElement;
@@ -79,6 +80,6 @@ export class CellEditor {
     // if click inside table do nothing
     if (this.editing.el.contains(target)) return;
 
-    await this.finishEdit();
+    void this.finishEdit();
   }
 }

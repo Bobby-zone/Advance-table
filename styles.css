@@ -82,6 +82,9 @@ td li {
 /* td.editing > *:not(.table-cell-editor){
     visibility: hidden;
 } */
+td.editing {
+    width: var(--table-cell-width);
+}
 td.editing p {
     display: none;
     /* visibility: hidden; */
@@ -95,6 +98,7 @@ td.editing p {
 
     width: 100%;
     max-width: 100%;
+    height: var(--table-cell-height);
 
     box-sizing: border-box !important;
     border: none !important;

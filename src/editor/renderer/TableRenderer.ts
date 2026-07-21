@@ -46,7 +46,7 @@ export class TableRenderer {
 
         if (editable) {
           td.addEventListener('click', () => {
-            this.cellEditor.beginEdit(cell, td);
+            void this.cellEditor.beginEdit(cell, td);
           });
         }
       }
