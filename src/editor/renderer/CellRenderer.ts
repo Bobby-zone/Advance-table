@@ -13,7 +13,7 @@ export class CellRenderer {
       el: HTMLElement,
       cell: TableCell,
       ): Promise<void> {
-    const markdown = cell.text.replace(/\n/g, '<br>');
+    const markdown = cell.text.replace(/\n\s*\n/g, '\n&nbsp;\n\n');
     await MarkdownRendererWrapper.render(
         this.app, el, markdown, this.component);
   }

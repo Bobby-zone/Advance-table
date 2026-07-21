@@ -68,26 +68,21 @@ td li {
 /*  */
 
 /* alignment */
-.center td:not(:has(ul)), .center .table-cell-editor {
+.center td:not(:has(ul)), .center td:not(:has(ul)) .table-cell-editor {
     text-align: center;
 }
 
-.middle td:not(:has(ul)), .middle .table-cell-editor {
+.middle td:not(:has(ul)), .middle td:not(:has(ul)) .table-cell-editor {
     vertical-align: middle;
 }
 /*  */
 
 /* =================== editor style =================== */
-/* cell textarea */
-/* td.editing > *:not(.table-cell-editor){
-    visibility: hidden;
-} */
 td.editing {
     width: var(--table-cell-width);
 }
-td.editing p {
+td.editing > *:not(.table-cell-editor){
     display: none;
-    /* visibility: hidden; */
 }
 
 .table-cell-editor {
