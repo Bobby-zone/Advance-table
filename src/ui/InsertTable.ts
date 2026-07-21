@@ -1,4 +1,4 @@
-import {App, Modal, Notice, Setting} from 'obsidian';
+import {App, Modal, Setting} from 'obsidian';
 
 export class InsertTableModal extends Modal {
   private rows = 3;
@@ -9,13 +9,12 @@ export class InsertTableModal extends Modal {
       private onSubmit: (rows: number, cols: number) => void,
   ) {
     super(app);
+    this.setTitle('Table size');
   }
 
   onOpen() {
     const {contentEl} = this;
     contentEl.empty();
-
-    contentEl.createEl('h1', {text: 'Table Size'});
 
     this.CreateNumberSetting(
         contentEl,
