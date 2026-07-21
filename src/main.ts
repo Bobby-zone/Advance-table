@@ -1,5 +1,6 @@
 import {Notice, Plugin} from 'obsidian';
 
+import {InsertTableCommand} from './commands/InsertTableCommand';
 import {TableRenderer} from './editor/renderer/TableRenderer';
 import {TableBlockParser} from './parser/TableBlockParser';
 import {InsertTableModal} from './ui/InsertTable';
@@ -24,9 +25,11 @@ export default class TablePlugin extends Plugin {
     this.addCommand({
       id: 'create-table',
       name: 'Create table',
-      editorCallback: () => {
+      editorCallback: (editor) => {
         new InsertTableModal(this.app, (rows, cols) => {
-          new Notice(`${rows.toString()} ${cols.toString()}`);
+          new Notice(rows.toString());
+          const table = InsertTableCommand.create(rows, cols);  // create table
+          editor.replaceSelection(table);                       // insert table
         }).open();
       }
     });

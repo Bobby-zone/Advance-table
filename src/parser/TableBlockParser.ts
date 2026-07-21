@@ -1,7 +1,6 @@
 import {TableModel} from '../models/TableModel';
 
 // convert json to TableModel
-
 export class TableBlockParser {
   static parse(raw: string): TableModel {
     const model = JSON.parse(raw) as TableModel;

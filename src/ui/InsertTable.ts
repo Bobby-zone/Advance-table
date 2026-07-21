@@ -1,8 +1,8 @@
-import {App, Modal, Setting} from 'obsidian';
+import {App, Modal, Notice, Setting} from 'obsidian';
 
 export class InsertTableModal extends Modal {
-  rows = 3;
-  cols = 3;
+  private rows = 3;
+  private cols = 3;
 
   constructor(
       app: App,
@@ -17,9 +17,18 @@ export class InsertTableModal extends Modal {
 
     contentEl.createEl('h1', {text: 'Table Size'});
 
-    this.CreateNumberSetting(contentEl, 'Rows', this.rows);  // row size input
     this.CreateNumberSetting(
-        contentEl, 'Columns', this.cols);  // col size input
+        contentEl,
+        'Rows',
+        this.rows,
+        value => this.rows = value,
+    );  // row size input
+    this.CreateNumberSetting(
+        contentEl,
+        'Columns',
+        this.cols,
+        value => this.cols = value,
+    );  // col size input
 
     // submit btn
     new Setting(contentEl).addButton(
@@ -32,8 +41,11 @@ export class InsertTableModal extends Modal {
   private CreateNumberSetting(
       parent: HTMLElement,
       name: string,
-      value: number,
+      initialValue: number,
+      onChange: (value: number) => void,
   ) {
+    let value = initialValue;
+
     const setting = new Setting(parent).setName(name);
 
     const decrease = setting.controlEl.createEl('button', {text: '-'});
@@ -41,17 +53,24 @@ export class InsertTableModal extends Modal {
     const size = setting.controlEl.createEl(
         'input', {type: 'number', value: value.toString()});
 
-    decrease.onclick = () => {
-      value = Math.max(1, value--);
-      size.value = value.toString();
-    };
+    const update =
+        () => {
+          size.value = value.toString();
+          onChange(value);
+        }
+
+              decrease.onclick = () => {
+          value--;
+          value = Math.max(1, value);
+          update();
+        };
     increase.onclick = () => {
       value++;
-      size.value = value.toString();
+      update();
     };
     size.onchange = () => {
       value = Math.max(1, Number(size.value) || 1);
-      size.value = value.toString();
+      update();
     };
   }
 }
