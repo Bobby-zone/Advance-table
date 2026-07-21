@@ -1,12 +1,16 @@
 import {App, Component} from 'obsidian';
 
-import {TableModel} from '../models/TableModel';
+import {TableModel} from '../../models/TableModel';
 
 import {CellRenderer} from './CellRenderer';
 
 export class TableRenderer {
   async render(
-      app: App, container: HTMLElement, model: TableModel, ctx: Component) {
+      app: App,
+      container: HTMLElement,
+      model: TableModel,
+      ctx: Component,
+  ) {
     const table = container.createEl('table');
     table.addClass('html-table');
 

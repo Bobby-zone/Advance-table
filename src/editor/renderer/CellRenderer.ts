@@ -1,8 +1,7 @@
 import {App, Component} from 'obsidian';
 
-import {TableCell} from '../models/TableCell';
-
-import {MarkdownRendererWrapper} from './MarkdownRenderer';
+import {TableCell} from '../../models/TableCell';
+import {MarkdownRendererWrapper} from '../../renderer/MarkdownRenderer';
 
 export class CellRenderer {
   static async render(
