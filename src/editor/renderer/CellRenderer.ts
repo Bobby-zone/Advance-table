@@ -1,15 +1,20 @@
-import {App, Component} from 'obsidian';
+import {App, Component, Notice} from 'obsidian';
 
 import {TableCell} from '../../models/TableCell';
 import {MarkdownRendererWrapper} from '../../renderer/MarkdownRenderer';
 
 export class CellRenderer {
-  static async render(
-      app: App,
+  constructor(
+      private app: App,
+      private component: Component,
+  ) {}
+
+  async render(
       el: HTMLElement,
       cell: TableCell,
-      ctx: Component,
       ): Promise<void> {
-    await MarkdownRendererWrapper.render(app, el, cell.text, ctx);
+    const markdown = cell.text.replace(/\n/g, '<br>');
+    await MarkdownRendererWrapper.render(
+        this.app, el, markdown, this.component);
   }
 }

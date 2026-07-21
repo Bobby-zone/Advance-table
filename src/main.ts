@@ -1,25 +1,33 @@
 import {Notice, Plugin} from 'obsidian';
 
 import {InsertTableCommand} from './commands/InsertTableCommand';
-import {TableRenderer} from './editor/renderer/TableRenderer';
+import {MarkdownUpdater} from './editor/MarkdownUpdater';
+import {TableView} from './editor/Tableview';
 import {TableBlockParser} from './parser/TableBlockParser';
 import {InsertTableModal} from './ui/InsertTable';
 
 export default class TablePlugin extends Plugin {
+  private markdownUpdater!: MarkdownUpdater;
+
   async onload() {
     // find codeblock table
-    this.registerMarkdownCodeBlockProcessor('table', async (source, el) => {
-      try {
-        const model = TableBlockParser.parse(source);
+    this.registerMarkdownCodeBlockProcessor(
+        'table', async (source, el, context) => {
+          try {
+            const model = TableBlockParser.parse(source);
 
-        const renderer = new TableRenderer();
-        await renderer.render(this.app, el, model, this);
-      } catch (err) {
-        console.error(err);
+            const view = new TableView(
+                this.app, this, context, model, async (newSource) => {
+                  const markdownUpdater = new MarkdownUpdater(this.app);
+                  await markdownUpdater.updateCodeBlock(context, el, newSource);
+                });
+            await view.render(el);
+          } catch (err) {
+            console.error(err);
 
-        el.createEl('pre', {text: 'Failed to render table.'});
-      }
-    });
+            el.createEl('pre', {text: 'Failed to render table.'});
+          }
+        });
 
     // add command to insert table
     this.addCommand({

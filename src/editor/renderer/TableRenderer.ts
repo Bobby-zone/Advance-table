@@ -1,15 +1,18 @@
-import {App, Component} from 'obsidian';
-
 import {TableModel} from '../../models/TableModel';
+import {CellEditor} from '../CellEditor';
 
 import {CellRenderer} from './CellRenderer';
 
 export class TableRenderer {
+  constructor(
+      private cellRenderer: CellRenderer,
+      private cellEditor: CellEditor,
+  ) {}
+
   async render(
-      app: App,
       container: HTMLElement,
       model: TableModel,
-      ctx: Component,
+      editable: boolean,
   ) {
     const table = container.createEl('table');
     table.addClass('html-table');
@@ -39,7 +42,13 @@ export class TableRenderer {
           td.classList.add('header-corner');
         }
 
-        await CellRenderer.render(app, td, cell, ctx);
+        await this.cellRenderer.render(td, cell);
+
+        if (editable) {
+          td.addEventListener('click', () => {
+            this.cellEditor.beginEdit(cell, td);
+          });
+        }
       }
 
       table.classList.add(...(model.style ?? []));

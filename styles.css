@@ -7,6 +7,11 @@
 }
 
 /* =================== global style =================== */
+td {
+    position: relative;
+    padding: 0 !important;
+    height: auto !important;
+}
 td p {
     margin: 0.4em 0.8em !important;   /* top/bottom left/right */
 }
@@ -57,67 +62,52 @@ td li {
     border-collapse: collapse;
 }
 
-.spread td {
+.spread td{
     white-space: nowrap;
 }
 /*  */
 
 /* alignment */
-.center td:not(:has(ul)) {
+.center td:not(:has(ul)), .center .table-cell-editor {
     text-align: center;
 }
 
-.middle td:not(:has(ul)) {
+.middle td:not(:has(ul)), .middle .table-cell-editor {
     vertical-align: middle;
 }
 /*  */
 
-
-/* =================== custom tab style =================== */
-.table-grid {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
+/* =================== editor style =================== */
+/* cell textarea */
+/* td.editing > *:not(.table-cell-editor){
+    visibility: hidden;
+} */
+td.editing p {
+    display: none;
+    /* visibility: hidden; */
 }
 
-.table-grid td {
-    border: 1px solid var(--background-modifier-border);
-    vertical-align: top;
-    padding: 0;
-}
+.table-cell-editor {
+    display: block;
 
-.table-cell {
-    width: 100%;
-    height: 100%;
-}
-
-.table-cell-input {
-    width: 100%;
-    min-height: 80px;
-    border: none;
     resize: none;
-    padding: 8px;
+    overflow: hidden;
+
+    width: 100%;
+    max-width: 100%;
+
+    box-sizing: border-box !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+
     font: inherit;
-    background: transparent;
-    box-sizing: border-box;
-}
-
-.table-cell-input:focus {
-    outline: none;
-    box-shadow: none;
-    background: transparent;
-}
-
-.table-toolbar {
-    display: flex;
-    gap: 8px;
-    padding: 8px;
-    border-bottom: 1px solid var(--background-modifier-border);
-}
-
-.table-cell.is-selected {
-    outline: 2px solid var(--interactive-accent);
-    background: var(--background-modifier-hover);
+    color: inherit;
+    line-height: inherit;
+    padding: 0.4em 0.8em !important;
+    margin: 0;
+    white-space: normal;
 }
 
 
